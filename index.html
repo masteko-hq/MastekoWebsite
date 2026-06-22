@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Masteko — Asset Management, Property Management & Accounting</title>
+<meta name="description" content="Masteko is the back-office and management-services team for real estate groups: asset management, property management, and bookkeeping & accounting, powered by our own financial data platform. Montréal, Québec." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0f1f33;
+    --navy-2:#16304d;
+    --slate:#22405f;
+    --gold:#c8a04e;
+    --gold-soft:#e3c98a;
+    --ink:#1c2733;
+    --muted:#5b6b7b;
+    --paper:#f7f5f0;
+    --paper-2:#efece4;
+    --white:#ffffff;
+    --line:rgba(15,31,51,.12);
+    --radius:14px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.12;color:var(--navy)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .accent{color:var(--gold)}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(247,245,240,.82);border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;color:var(--navy);letter-spacing:.5px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);display:inline-block;margin-bottom:4px}
+  nav.links{display:flex;align-items:center;gap:30px}
+  nav.links a{font-size:.93rem;color:var(--slate);font-weight:500;transition:color .2s}
+  nav.links a:hover{color:var(--gold)}
+  .lang{font-size:.8rem;color:var(--muted);border:1px solid var(--line);border-radius:30px;padding:5px 12px;cursor:pointer;background:transparent;font-family:inherit}
+  .lang:hover{border-color:var(--gold);color:var(--gold)}
+  .btn{
+    display:inline-block;background:var(--navy);color:var(--white)!important;
+    padding:12px 22px;border-radius:30px;font-weight:500;font-size:.92rem;
+    transition:transform .2s, background .2s;border:none;cursor:pointer;font-family:inherit;
+  }
+  .btn:hover{background:var(--slate);transform:translateY(-1px)}
+  .btn.gold{background:var(--gold);color:var(--navy)!important}
+  .btn.gold:hover{background:var(--gold-soft)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .menu-toggle{display:none}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:
+      radial-gradient(1100px 500px at 80% -10%, rgba(200,160,78,.10), transparent 60%),
+      linear-gradient(180deg,#0f1f33 0%, #16304d 100%);
+    color:#eaf0f7;padding:96px 0 110px}
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:22px;font-weight:600}
+  .hero h1{color:#fff;font-size:clamp(2.4rem,5vw,4rem);max-width:15ch;margin-bottom:24px}
+  .hero p.lead{font-size:1.18rem;color:#c3d0de;max-width:54ch;margin-bottom:36px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-meta{margin-top:54px;display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:26px}
+  .hero-meta div span{display:block}
+  .hero-meta .num{font-family:'Fraunces',serif;font-size:1.7rem;color:#fff}
+  .hero-meta .lbl{font-size:.82rem;color:#9fb2c6;letter-spacing:.04em}
+  .grid-lines{position:absolute;inset:0;z-index:1;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:64px 64px;mask-image:linear-gradient(180deg,transparent,#000 40%,transparent)}
+
+  /* SECTION */
+  section{padding:92px 0}
+  .sec-head{max-width:62ch;margin-bottom:54px}
+  .sec-head .eyebrow{color:var(--gold)}
+  .sec-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:16px}
+  .sec-head p{color:var(--muted);font-size:1.08rem}
+
+  /* SERVICES */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;transition:transform .25s, box-shadow .25s;}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px -22px rgba(15,31,51,.4)}
+  .card .ico{width:46px;height:46px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .card .ico svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.6}
+  .card h3{font-size:1.32rem;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:.97rem;margin-bottom:18px}
+  .card ul{list-style:none}
+  .card li{font-size:.9rem;color:var(--slate);padding-left:20px;position:relative;margin-bottom:8px}
+  .card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+  /* APPROACH */
+  .approach{background:linear-gradient(180deg,#16304d,#0f1f33);color:#e7eef6}
+  .approach .sec-head h2{color:#fff}
+  .approach .sec-head .eyebrow{color:var(--gold-soft)}
+  .approach .sec-head p{color:#b5c4d6}
+  .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+  .feat .f{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:30px 26px}
+  .feat .f h3{color:#fff;font-size:1.18rem;margin-bottom:10px}
+  .feat .f .tag{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft);font-weight:600;display:block;margin-bottom:14px}
+  .feat .f p{color:#aebfd1;font-size:.94rem}
+  .approach .pull{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.6vw,1.9rem);color:#fff;max-width:30ch;margin:0 auto 56px;text-align:center;font-weight:400}
+  .approach .pull em{color:var(--gold-soft);font-style:italic}
+
+  /* SERVE */
+  .serve-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:54px;align-items:center}
+  .serve-list{display:flex;flex-direction:column;gap:18px}
+  .serve-item{display:flex;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .serve-item:last-child{border-bottom:none}
+  .serve-item .n{font-family:'Fraunces',serif;color:var(--gold);font-size:1.1rem;min-width:34px}
+  .serve-item h4{font-size:1.05rem;color:var(--navy);margin-bottom:4px}
+  .serve-item p{font-size:.94rem;color:var(--muted)}
+  .serve-panel{background:var(--navy);color:#e7eef6;border-radius:var(--radius);padding:42px 38px}
+  .serve-panel h3{color:#fff;font-size:1.5rem;margin-bottom:18px}
+  .serve-panel p{color:#b8c6d6;font-size:.98rem;margin-bottom:22px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-size:.8rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#dbe6f1;padding:7px 14px;border-radius:30px}
+
+  /* PROPERTIES */
+  .props{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .prop{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s, box-shadow .25s;display:flex;flex-direction:column}
+  .prop:hover{transform:translateY(-5px);box-shadow:0 18px 40px -22px rgba(15,31,51,.4)}
+  .prop .top{height:120px;position:relative;display:flex;align-items:flex-end;padding:18px 22px;color:#fff;
+    background:linear-gradient(135deg,#16304d,#0f1f33)}
+  .prop .top svg{position:absolute;inset:0;width:100%;height:100%;opacity:.22}
+  .prop .top .nm{position:relative;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:500;z-index:2}
+  .prop .body{padding:24px 22px 26px;flex:1;display:flex;flex-direction:column}
+  .prop .loc{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+  .prop .type{font-size:.86rem;color:var(--slate);font-weight:500;margin-bottom:12px}
+  .prop p{font-size:.93rem;color:var(--muted)}
+  .props-note{margin-top:26px;font-size:.86rem;color:var(--muted);font-style:italic}
+
+  /* WHY */
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .why .w{padding:28px 24px;border-left:2px solid var(--gold)}
+  .why .w h4{font-family:'Fraunces',serif;font-weight:500;font-size:1.1rem;color:var(--navy);margin-bottom:8px}
+  .why .w p{font-size:.92rem;color:var(--muted)}
+
+  /* CONTACT */
+  .contact{background:var(--paper-2)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+  .contact h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:16px}
+  .contact p.lead{color:var(--muted);font-size:1.06rem;margin-bottom:28px}
+  .contact .detail{margin-bottom:16px}
+  .contact .detail span{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;font-weight:600}
+  .contact .detail a,.contact .detail strong{font-size:1.05rem;color:var(--navy);font-weight:500}
+  form{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.85rem;color:var(--slate);margin-bottom:6px;font-weight:500}
+  .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+  .field textarea{resize:vertical;min-height:110px}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#9fb2c6;padding:48px 0 36px}
+  .foot-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .foot-top .brand{color:#fff}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap}
+  .foot-links a{font-size:.9rem;color:#b8c6d6}
+  .foot-links a:hover{color:var(--gold-soft)}
+  .foot-bottom{padding-top:24px;font-size:.82rem;color:#7d92a8;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .cards,.feat,.why{grid-template-columns:1fr 1fr}
+    .serve-grid,.contact-grid{grid-template-columns:1fr;gap:34px}
+  }
+  @media(max-width:680px){
+    nav.links{display:none}
+    .menu-toggle{display:none}
+    .cards,.feat,.why{grid-template-columns:1fr}
+    .hero{padding:72px 0 80px}
+    .hero-meta{gap:24px}
+    section{padding:66px 0}
+    .nav-cta .btn{padding:10px 16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">Masteko<span class="dot"></span></a>
+    <nav class="links">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#approach" data-i18n="nav_approach">Approach</a>
+      <a href="#properties" data-i18n="nav_properties">Properties</a>
+      <a href="#serve" data-i18n="nav_serve">Who We Serve</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang" id="langBtn">FR</button>
+      <a href="#contact" class="btn" data-i18n="nav_cta">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding-top:96px">
+  <div class="grid-lines"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="hero_eyebrow">Asset Management · Property Management · Accounting</span>
+    <h1 data-i18n="hero_title">The financial and operational engine behind real estate groups.</h1>
+    <p class="lead" data-i18n="hero_lead">Masteko runs the books, the buildings, and the assets for owners, developers, and investors — so you can stay focused on the deal. One disciplined team, institutional-grade reporting, built on our own data platform.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn gold" data-i18n="hero_cta1">Get in touch</a>
+      <a href="#services" class="btn" style="background:rgba(255,255,255,.1)" data-i18n="hero_cta2">See our services</a>
+    </div>
+    <div class="hero-meta">
+      <div><span class="num">3</span><span class="lbl" data-i18n="hero_m1">Integrated service lines</span></div>
+      <div><span class="num">30+</span><span class="lbl" data-i18n="hero_m2">Entities & partnerships managed</span></div>
+      <div><span class="num">EN / FR</span><span class="lbl" data-i18n="hero_m3">Bilingual Québec team</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="svc_eyebrow">What we do</span>
+      <h2 data-i18n="svc_title">Three services, one accountable team.</h2>
+      <p data-i18n="svc_sub">Owners and developers focus on deals and construction. Masteko keeps the financial and operational machine running underneath — across every entity in the group.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg></div>
+        <h3 data-i18n="svc1_t">Asset Management</h3>
+        <p data-i18n="svc1_p">Oversight and stewardship of real estate assets on behalf of owners, partnerships, and investors.</p>
+        <ul>
+          <li data-i18n="svc1_l1">Investor & LP reporting, quarterly and annual</li>
+          <li data-i18n="svc1_l2">Capital calls and distributions</li>
+          <li data-i18n="svc1_l3">Lender relations & financing support</li>
+          <li data-i18n="svc1_l4">Construction draw & cost-consultant packages</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12M9 21v-5h6v5M8 11h.01M12 11h.01M16 11h.01"/></svg></div>
+        <h3 data-i18n="svc2_t">Property Management</h3>
+        <p data-i18n="svc2_p">Day-to-day management of residential and multi-family properties across the portfolio.</p>
+        <ul>
+          <li data-i18n="svc2_l1">Rent collection & tenant administration</li>
+          <li data-i18n="svc2_l2">Unit and building records</li>
+          <li data-i18n="svc2_l3">Operating oversight & vendor coordination</li>
+          <li data-i18n="svc2_l4">On-site team support</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 7h6M9 11h6M9 15h4M6 3h12a1 1 0 0 1 1 1v16l-3-2-2 2-2-2-2 2-2-2-2 2V4a1 1 0 0 1 1-1z"/></svg></div>
+        <h3 data-i18n="svc3_t">Bookkeeping & Accounting</h3>
+        <p data-i18n="svc3_p">Full-cycle bookkeeping and accounting for multiple entities, built for clean year-ends.</p>
+        <ul>
+          <li data-i18n="svc3_l1">Accounts payable & receivable</li>
+          <li data-i18n="svc3_l2">Intercompany reconciliations</li>
+          <li data-i18n="svc3_l3">Year-end financial statements</li>
+          <li data-i18n="svc3_l4">CPA & auditor coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:none;text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow" data-i18n="app_eyebrow">Our advantage</span>
+      <h2 data-i18n="app_title">Built on our own financial data platform.</h2>
+      <p style="margin:0 auto" data-i18n="app_sub">Masteko isn't a spreadsheet shop. We run proprietary tooling that consolidates many entities into clean, real-time reporting — institutional-grade output, without the institutional overhead.</p>
+    </div>
+    <div class="feat">
+      <div class="f reveal">
+        <span class="tag" data-i18n="app1_tag">Data Warehouse</span>
+        <h3 data-i18n="app1_t">MastekoDWH</h3>
+        <p data-i18n="app1_p">Live QuickBooks data piped into a central warehouse for consolidated, cross-entity reporting you can actually trust.</p>
+      </div>
+      <div class="f reveal">
+        <span class="tag" data-i18n="app2_tag">Financial Model</span>
+        <h3 data-i18n="app2_t">Reporting & Forecasting</h3>
+        <p data-i18n="app2_p">EBITDA, profitability, and contribution analysis that refreshes automatically from the source ledgers.</p>
+      </div>
+      <div class="f reveal">
+        <span class="tag" data-i18n="app3_tag">AI-assisted</span>
+        <h3 data-i18n="app3_t">Ask Your Numbers</h3>
+        <p data-i18n="app3_p">Natural-language querying over the group's financials — answers in seconds, not days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVE -->
+<section id="serve">
+  <div class="wrap">
+    <div class="serve-grid">
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:34px">
+          <span class="eyebrow" data-i18n="srv_eyebrow">Who we serve</span>
+          <h2 data-i18n="srv_title">Made for operators running many entities at once.</h2>
+        </div>
+        <div class="serve-list">
+          <div class="serve-item">
+            <span class="n">01</span>
+            <div><h4 data-i18n="srv1_t">Owners & developers</h4><p data-i18n="srv1_p">Running multiple corporate entities who need one team to hold the whole financial picture.</p></div>
+          </div>
+          <div class="serve-item">
+            <span class="n">02</span>
+            <div><h4 data-i18n="srv2_t">Partnerships, LPs & investors</h4><p data-i18n="srv2_p">Who expect clean, regular reporting, capital calls, and distributions handled with care.</p></div>
+          </div>
+          <div class="serve-item">
+            <span class="n">03</span>
+            <div><h4 data-i18n="srv3_t">Property owners</h4><p data-i18n="srv3_p">Residential and multi-family portfolios that need disciplined day-to-day management.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="serve-panel reveal">
+        <h3 data-i18n="srvp_t">Multi-entity by design</h3>
+        <p data-i18n="srvp_p">We're built to manage dozens of companies, partnerships, and LPs cleanly at the same time — and to produce financials your lenders and accountants can rely on.</p>
+        <div class="chips">
+          <span class="chip" data-i18n="chip1">Lender-ready</span>
+          <span class="chip" data-i18n="chip2">CPA-ready</span>
+          <span class="chip" data-i18n="chip3">Intercompany</span>
+          <span class="chip" data-i18n="chip4">QuickBooks Online</span>
+          <span class="chip" data-i18n="chip5">Quarterly reporting</span>
+          <span class="chip" data-i18n="chip6">Capital calls</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTIES -->
+<section id="properties" class="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="prop_eyebrow">Properties we manage</span>
+      <h2 data-i18n="prop_title">A portfolio under active management.</h2>
+      <p data-i18n="prop_sub">Representative assets we manage end-to-end — asset management, property management, and accounting — with regular investor reporting behind each one.</p>
+    </div>
+    <div class="props">
+      <div class="prop reveal">
+        <div class="top">
+          <svg viewBox="0 0 200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 95 L0 55 L30 55 L30 40 L70 40 L70 60 L110 60 L110 30 L150 30 L150 50 L200 50 L200 95 Z" fill="rgba(255,255,255,.18)"/><path d="M20 95 L20 70 L45 70 L45 95 M85 95 L85 72 L120 72 L120 95 M135 95 L135 60 L175 60 L175 95" fill="rgba(255,255,255,.14)"/></svg>
+          <span class="nm">TGLP</span>
+        </div>
+        <div class="body">
+          <span class="loc" data-i18n="prop1_loc">Mont-Tremblant, QC</span>
+          <span class="type" data-i18n="prop1_type">Tremblant Gateway · Hospitality & retail</span>
+          <p data-i18n="prop1_p">A mixed-use hospitality and commercial asset in the Mont-Tremblant area — a hotel with street-level retail and restaurant tenants, held in a limited partnership with active, regular investor reporting.</p>
+        </div>
+      </div>
+      <div class="prop reveal">
+        <div class="top">
+          <svg viewBox="0 0 200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><rect x="35" y="20" width="130" height="75" fill="rgba(255,255,255,.16)"/><g fill="rgba(255,255,255,.28)"><rect x="48" y="32" width="16" height="14"/><rect x="74" y="32" width="16" height="14"/><rect x="100" y="32" width="16" height="14"/><rect x="126" y="32" width="16" height="14"/><rect x="48" y="56" width="16" height="14"/><rect x="74" y="56" width="16" height="14"/><rect x="100" y="56" width="16" height="14"/><rect x="126" y="56" width="16" height="14"/></g></svg>
+          <span class="nm">Vanchamp</span>
+        </div>
+        <div class="body">
+          <span class="loc" data-i18n="prop2_loc">Montréal, QC</span>
+          <span class="type" data-i18n="prop2_type">Van Horne & Champagneur · Office & commercial</span>
+          <p data-i18n="prop2_p">A mixed-use office and commercial building anchored by a CLSC health clinic, with professional office suites, street-level retail, and parking — managed for stable occupancy and steady investor returns.</p>
+        </div>
+      </div>
+      <div class="prop reveal">
+        <div class="top">
+          <svg viewBox="0 0 200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="55" width="55" height="40" fill="rgba(255,255,255,.16)"/><rect x="78" y="40" width="50" height="55" fill="rgba(255,255,255,.20)"/><rect x="136" y="60" width="50" height="35" fill="rgba(255,255,255,.14)"/><g fill="rgba(255,255,255,.30)"><rect x="92" y="52" width="10" height="10"/><rect x="106" y="52" width="10" height="10"/><rect x="92" y="68" width="10" height="10"/><rect x="106" y="68" width="10" height="10"/></g></svg>
+          <span class="nm">Bukoval</span>
+        </div>
+        <div class="body">
+          <span class="loc" data-i18n="prop3_loc">Montréal, QC</span>
+          <span class="type" data-i18n="prop3_type">Lajeunesse · Net-lease retail</span>
+          <p data-i18n="prop3_p">A multi-tenant net-lease commercial property on Lajeunesse, anchored by established national tenants including McDonald's and the SAQ — a stable income asset managed for long-term value creation.</p>
+        </div>
+      </div>
+    </div>
+    <p class="props-note reveal" data-i18n="prop_note">A selection of the entities and assets we manage. Detailed performance is reported privately to each property's owners and investors.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="why_eyebrow">Why Masteko</span><h2 data-i18n="why_title">Stewardship, not just bookkeeping.</h2></div>
+    <div class="why">
+      <div class="w reveal"><h4 data-i18n="why1_t">One team, full stack</h4><p data-i18n="why1_p">Asset management, property management, and accounting under a single accountable roof.</p></div>
+      <div class="w reveal"><h4 data-i18n="why2_t">Institutional rigor</h4><p data-i18n="why2_p">Consolidated, real-time reporting powered by our own data warehouse and models.</p></div>
+      <div class="w reveal"><h4 data-i18n="why3_t">Bilingual Québec roots</h4><p data-i18n="why3_p">A Montréal team working seamlessly in English and French, across Québec and beyond.</p></div>
+      <div class="w reveal"><h4 data-i18n="why4_t">Built for complexity</h4><p data-i18n="why4_p">Intercompany structures, multiple lenders, and many entities — handled cleanly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--gold)" data-i18n="con_eyebrow">Contact</span>
+        <h2 data-i18n="con_title">Let's talk about your portfolio.</h2>
+        <p class="lead" data-i18n="con_lead">Tell us about the entities you manage and where you need support. We'll come back with a clear next step.</p>
+        <div class="detail"><span data-i18n="con_email_l">Email</span><a href="mailto:pete@masteko.ca">pete@masteko.ca</a></div>
+        <div class="detail"><span data-i18n="con_loc_l">Location</span><strong data-i18n="con_loc">Montréal, Québec, Canada</strong></div>
+        <div class="detail"><span data-i18n="con_lang_l">Languages</span><strong data-i18n="con_lang">English & French</strong></div>
+      </div>
+      <form id="contactForm" action="mailto:pete@masteko.ca" method="post" enctype="text/plain">
+        <div class="field"><label data-i18n="f_name">Name</label><input type="text" name="name" required /></div>
+        <div class="field"><label data-i18n="f_email">Email</label><input type="email" name="email" required /></div>
+        <div class="field"><label data-i18n="f_company">Company</label><input type="text" name="company" /></div>
+        <div class="field"><label data-i18n="f_msg">How can we help?</label><textarea name="message"></textarea></div>
+        <button type="submit" class="btn gold" style="width:100%" data-i18n="f_submit">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="#top" class="brand">Masteko<span class="dot"></span></a>
+      <div class="foot-links">
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#approach" data-i18n="nav_approach">Approach</a>
+        <a href="#properties" data-i18n="nav_properties">Properties</a>
+        <a href="#serve" data-i18n="nav_serve">Who We Serve</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Masteko — 9408-4811 Québec Inc. · Montréal, QC</span>
+      <span data-i18n="foot_tag">Asset Management · Property Management · Accounting</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Bilingual toggle (EN <-> FR)
+  const fr = {
+    nav_services:"Services", nav_approach:"Approche", nav_properties:"Immeubles", nav_serve:"Notre clientèle", nav_contact:"Contact", nav_cta:"Prendre rendez-vous",
+    prop_eyebrow:"Immeubles que nous gérons", prop_title:"Un portefeuille sous gestion active.",
+    prop_sub:"Des actifs représentatifs que nous gérons de bout en bout — gestion d'actifs, gestion immobilière et comptabilité — avec un suivi régulier auprès des investisseurs.",
+    prop1_loc:"Mont-Tremblant, QC", prop1_type:"Tremblant Gateway · Hôtellerie et commerces",
+    prop1_p:"Un actif mixte d'hôtellerie et de commerces dans la région de Mont-Tremblant — un hôtel avec commerces et restaurants au rez-de-chaussée, détenu en société en commandite avec un suivi régulier auprès des investisseurs.",
+    prop2_loc:"Montréal, QC", prop2_type:"Van Horne et Champagneur · Bureaux et commerces",
+    prop2_p:"Un immeuble mixte de bureaux et de commerces ancré par un CLSC, avec des suites professionnelles, des commerces au rez-de-chaussée et du stationnement — géré pour une occupation stable et des rendements constants.",
+    prop3_loc:"Montréal, QC", prop3_type:"Lajeunesse · Commerces à bail net",
+    prop3_p:"Un immeuble commercial multilocataire à bail net sur Lajeunesse, ancré par des locataires nationaux établis dont McDonald's et la SAQ — un actif de revenu stable géré pour la création de valeur à long terme.",
+    prop_note:"Une sélection des entités et des actifs que nous gérons. La performance détaillée est communiquée en privé aux propriétaires et investisseurs de chaque immeuble.",
+    hero_eyebrow:"Gestion d'actifs · Gestion immobilière · Comptabilité",
+    hero_title:"Le moteur financier et opérationnel des groupes immobiliers.",
+    hero_lead:"Masteko gère les livres, les immeubles et les actifs des propriétaires, promoteurs et investisseurs — pour que vous restiez concentrés sur la transaction. Une équipe rigoureuse, des rapports de calibre institutionnel, bâtis sur notre propre plateforme de données.",
+    hero_cta1:"Nous joindre", hero_cta2:"Voir nos services",
+    hero_m1:"Services intégrés", hero_m2:"Entités et sociétés gérées", hero_m3:"Équipe bilingue au Québec",
+    svc_eyebrow:"Ce que nous faisons", svc_title:"Trois services, une seule équipe responsable.",
+    svc_sub:"Les propriétaires et promoteurs se concentrent sur les transactions et la construction. Masteko fait tourner la machine financière et opérationnelle en dessous — pour chaque entité du groupe.",
+    svc1_t:"Gestion d'actifs", svc1_p:"Supervision et gérance des actifs immobiliers pour les propriétaires, sociétés et investisseurs.",
+    svc1_l1:"Rapports aux investisseurs et commanditaires, trimestriels et annuels", svc1_l2:"Appels de capital et distributions", svc1_l3:"Relations avec les prêteurs et soutien au financement", svc1_l4:"Dossiers de déboursés et de consultants en coûts",
+    svc2_t:"Gestion immobilière", svc2_p:"Gestion quotidienne des immeubles résidentiels et multifamiliaux du portefeuille.",
+    svc2_l1:"Perception des loyers et administration des locataires", svc2_l2:"Registres des unités et des immeubles", svc2_l3:"Supervision des opérations et coordination des fournisseurs", svc2_l4:"Soutien aux équipes sur le terrain",
+    svc3_t:"Tenue de livres et comptabilité", svc3_p:"Comptabilité complète pour de multiples entités, conçue pour des fins d'exercice impeccables.",
+    svc3_l1:"Comptes fournisseurs et clients", svc3_l2:"Rapprochements intersociétés", svc3_l3:"États financiers de fin d'exercice", svc3_l4:"Coordination avec les CPA et vérificateurs",
+    app_eyebrow:"Notre avantage", app_title:"Bâti sur notre propre plateforme de données financières.",
+    app_sub:"Masteko n'est pas une simple firme de chiffriers. Nous exploitons des outils propriétaires qui consolident de nombreuses entités en rapports clairs et en temps réel — un calibre institutionnel, sans la lourdeur.",
+    app1_tag:"Entrepôt de données", app1_t:"MastekoDWH", app1_p:"Les données QuickBooks en direct, acheminées vers un entrepôt central pour des rapports consolidés et fiables entre entités.",
+    app2_tag:"Modèle financier", app2_t:"Rapports et prévisions", app2_p:"BAIIA, rentabilité et analyse des contributions, mis à jour automatiquement depuis les grands livres.",
+    app3_tag:"Assisté par IA", app3_t:"Interrogez vos chiffres", app3_p:"Requêtes en langage naturel sur les finances du groupe — des réponses en secondes, pas en jours.",
+    srv_eyebrow:"Notre clientèle", srv_title:"Pensé pour les opérateurs gérant plusieurs entités à la fois.",
+    srv1_t:"Propriétaires et promoteurs", srv1_p:"Gérant plusieurs entités corporatives et ayant besoin d'une équipe qui détient le portrait financier complet.",
+    srv2_t:"Sociétés, commanditaires et investisseurs", srv2_p:"Qui attendent des rapports clairs et réguliers, des appels de capital et des distributions menés avec soin.",
+    srv3_t:"Propriétaires d'immeubles", srv3_p:"Portefeuilles résidentiels et multifamiliaux nécessitant une gestion quotidienne rigoureuse.",
+    srvp_t:"Multi-entités par conception", srvp_p:"Nous sommes conçus pour gérer des dizaines de sociétés, sociétés en commandite et commanditaires en même temps — et produire des états financiers fiables pour vos prêteurs et comptables.",
+    chip1:"Prêt pour les prêteurs", chip2:"Prêt pour les CPA", chip3:"Intersociétés", chip4:"QuickBooks en ligne", chip5:"Rapports trimestriels", chip6:"Appels de capital",
+    why_eyebrow:"Pourquoi Masteko", why_title:"De la gérance, pas seulement de la tenue de livres.",
+    why1_t:"Une équipe, tout le spectre", why1_p:"Gestion d'actifs, gestion immobilière et comptabilité sous un même toit responsable.",
+    why2_t:"Rigueur institutionnelle", why2_p:"Rapports consolidés en temps réel, propulsés par notre entrepôt de données et nos modèles.",
+    why3_t:"Racines québécoises bilingues", why3_p:"Une équipe montréalaise travaillant en anglais et en français, au Québec et au-delà.",
+    why4_t:"Conçu pour la complexité", why4_p:"Structures intersociétés, multiples prêteurs et nombreuses entités — gérés avec clarté.",
+    con_eyebrow:"Contact", con_title:"Parlons de votre portefeuille.",
+    con_lead:"Parlez-nous des entités que vous gérez et de vos besoins. Nous reviendrons avec une prochaine étape claire.",
+    con_email_l:"Courriel", con_loc_l:"Emplacement", con_loc:"Montréal, Québec, Canada", con_lang_l:"Langues", con_lang:"Anglais et français",
+    f_name:"Nom", f_email:"Courriel", f_company:"Entreprise", f_msg:"Comment pouvons-nous aider ?", f_submit:"Envoyer le message",
+    foot_tag:"Gestion d'actifs · Gestion immobilière · Comptabilité"
+  };
+  const en = {};
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ en[el.getAttribute('data-i18n')] = el.innerHTML; });
+  let lang = 'en';
+  document.getElementById('langBtn').addEventListener('click', function(){
+    lang = (lang==='en') ? 'fr' : 'en';
+    const dict = (lang==='fr') ? fr : en;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n');
+      if(dict[k]!==undefined) el.innerHTML = dict[k];
+    });
+    document.documentElement.lang = lang;
+    this.textContent = (lang==='fr') ? 'EN' : 'FR';
+  });
+</script>
+</body>
+</html>
