@@ -2,13 +2,18 @@
 
 The marketing website for **Masteko (9408-4811 Québec Inc.)** — Asset Management, Property Management, and Bookkeeping & Accounting. Montréal, Québec. Bilingual (EN/FR).
 
-It is a single, self-contained static page. No build step, no backend, no dependencies. Open `index.html` and it works.
+It is a static website with no build step or backend. Open `index.html` through a local web server and it works.
 
 ## Repository contents
 
 | File | What it is |
 |------|------------|
-| `index.html` | The entire website (HTML + CSS + JavaScript in one file) |
+| `index.html` | The Oxford-inspired Masteko homepage |
+| `assets/site.css` | Responsive visual system and page layout |
+| `assets/site.js` | Bilingual toggle and mobile navigation |
+| `assets/team/` | Approved public team portraits used by the site |
+| `assets/property/` | Campus Habitations project photography |
+| `WEBSITE_RECOMMENDATIONS.md` | Implemented decisions and recommended next improvements |
 | `DEPLOY.md` | How to publish the site (for Nicole) |
 | `EDITING.md` | How to update the text and the property list (for Natali) |
 | `Masteko_Website_Brief.md` | The design brief describing the site |
@@ -30,14 +35,16 @@ Then open http://localhost:8080
 
 ## Features
 
-- Single-page scroll layout: Hero, Services, Approach/Technology, Properties, Who We Serve, Why Masteko, Contact
+- Oxford-inspired institutional single-page layout: capabilities, proof, representative mandates, operating platform, people, stewardship and contact
 - Bilingual EN / FR toggle (top-right button) — full French translation built in
-- Mobile-responsive, with subtle scroll animations
-- Contact form (currently a `mailto:` link — see DEPLOY.md to capture submissions)
+- Mobile-responsive navigation and WCAG-conscious focus/reduced-motion handling
+- Direct investor portal link and contact email
+- Real management-team and Campus Habitations photography
 
 ## Before going live — checklist
 
 - Confirm the public contact email (currently `pete@masteko.ca`)
 - Point the domain (e.g. `masteko.ca`) at the host — see DEPLOY.md
-- Optional: add a logo image in place of the text wordmark
-- Optional: self-host the fonts for full offline reliability
+- Confirm the public reuse rights for all cross-brand and LinkedIn photography
+- Confirm the reporting date and definition for the $75M and 30+ public metrics
+- Review `WEBSITE_RECOMMENDATIONS.md` for the next institutional-content upgrades
