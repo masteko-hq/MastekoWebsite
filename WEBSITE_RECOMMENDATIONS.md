@@ -4,7 +4,7 @@
 
 - A restrained, institutional visual system built around large typography, white space, real photography and a limited forest/lime palette.
 - Clear separation of owner representation, property operations, accounting/reporting and systems.
-- Concrete operating proof: the $75M Campus Habitations platform, 30+ entities and partnerships, bilingual delivery and named representative mandates.
+- Concrete operating proof: $125M of assets under management, 30+ entities and partnerships, bilingual delivery and representative property profiles.
 - An investor-facing operating-platform section that explains the path from source accounting to the quarterly owner package.
 - Governance language covering decision authority, traceability, risk exceptions and accountability.
 - A management-team section with real photography for Marc Koran, Natali Slutsker, Steve Lombardi, Peter Taylor, Thiha Nyi Nyi and Nicole Koran.
@@ -19,7 +19,7 @@ Commission one consistent half-day shoot covering the six team members, one work
 
 ### 2. Add three proper mandate pages
 
-Create dedicated pages for Campus Habitations, Bukoval and TGLP/MBH. Each page should show the mandate, asset type, Masteko scope, control structure, reporting cadence and outcomes that can be disclosed. Avoid publishing rent, valuation or investor information unless specifically approved.
+Create dedicated, anonymized case studies by property type. Each page should show the mandate, asset profile, Masteko scope, control structure, reporting cadence and outcomes that can be disclosed. Keep Campus Habitations as a separate business spotlight. Avoid publishing rent, valuation or investor information unless specifically approved.
 
 ### 3. Publish a sample quarterly reporting package
 
@@ -31,7 +31,7 @@ Explain how Masteko supports sourcing, underwriting, tenant-credit review, LOI n
 
 ### 5. Add reporting dates to every metric
 
-Institutional sites date their facts. Confirm the reporting date and definition for the $75M platform and 30+ entities, then disclose “as at [date]” in the page footer or beside the metrics.
+Institutional sites date their facts. Confirm the reporting date and definition for the $125M of assets under management and 30+ entities, then disclose “as at [date]” in the page footer or beside the metrics.
 
 ### 6. Strengthen governance and compliance pages
 
