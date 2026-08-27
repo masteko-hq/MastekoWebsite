@@ -1,6 +1,6 @@
 # How to update the website text (for Natali)
 
-Everything on the site lives in one file: **`index.html`**. You don't need to be a developer to change wording. You edit text, save, and commit — GitHub Pages republishes the site within a minute or two.
+The website text and structure live in **`index.html`**. Its visual formatting lives in **`assets/site.css`**, and the language/menu behaviour lives in **`assets/site.js`**. For wording changes, you normally only need to edit `index.html`.
 
 The safest way to edit is right inside GitHub:
 
@@ -15,24 +15,18 @@ If you ever make a mistake, GitHub keeps every previous version — nothing is l
 
 ## Important: the site is bilingual
 
-Every piece of visible text appears **twice**:
+Most visible text appears **twice in the same HTML element**:
 
 1. The **English** version, in the page itself (the part you can read in the HTML).
-2. The **French** version, in a list near the bottom of the file (inside a section that starts with `const fr = {`).
+2. The **French** version, in the `data-fr` attribute.
 
-Each pair is linked by a label called `data-i18n`. For example:
+Each pair is stored in `data-en` and `data-fr`. For example:
 
 ```html
-<h3 data-i18n="svc1_t">Asset Management</h3>
+<h3 data-en="Asset Management" data-fr="Gestion d’actifs">Asset Management</h3>
 ```
 
-…has a matching French line near the bottom:
-
-```js
-svc1_t:"Gestion d'actifs",
-```
-
-**When you change English text, change the matching French line too** (find it by its label, e.g. `svc1_t`). If you only change one, the toggle will show your new text in one language and the old text in the other.
+**When you change English text, update both `data-en` and the text between the HTML tags. Update `data-fr` with the matching French translation.** If you only change one, the toggle can show inconsistent wording.
 
 ## Common edits
 
@@ -40,18 +34,16 @@ svc1_t:"Gestion d'actifs",
 Search for `pete@masteko.ca` and replace every instance (there are a couple).
 
 ### Change a phone number or wording in a section
-Find the English text, edit it, then find its `data-i18n` label and update the French line at the bottom to match.
+Find the English text and edit both the visible text and `data-en`, then update `data-fr` with the matching French wording.
 
-### Update the Properties section
-Each property is a block that starts with `class="prop reveal"`. Inside it:
+### Update the Experience section
+The Campus Habitations feature starts with `class="feature-mandate"`. The selected mandate rows are inside `class="mandate-table"`.
 
-- `class="loc"` = the location line (e.g. "Montréal, QC")
-- `class="type"` = the asset type line
-- the `<p>` = the description
+- Update the visible English text and its `data-en` value together.
+- Update the matching `data-fr` value.
+- Keep confidential rents, valuations and ownership information off the public site.
 
-Update both the English (in the block) and the French (the `prop1_…`, `prop2_…`, `prop3_…` lines at the bottom).
-
-To **add a fourth property**, the cleanest path is to copy an existing property block, paste it as a fourth, give its labels new names (e.g. `prop4_loc`, `prop4_type`, `prop4_p`), and add matching French lines. If that feels fiddly, send me the property details (name, location, type, one-sentence description) and I'll add it.
+To add another mandate, copy one existing `role="row"` block and replace its three cells in both languages.
 
 ## When in doubt
 
