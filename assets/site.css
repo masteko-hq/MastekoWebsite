@@ -128,9 +128,8 @@ h3 { line-height: 1.15; }
 .people-intro > p { max-width: 39rem; color: var(--muted); font-size: 1.1rem; }
 .people-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem 1.5rem; }
 .person { border-top: 1px solid var(--line); padding-top: 1.25rem; }
-.person img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 1.4rem; background: #e0dfdb; border-radius: 50%; filter: saturate(0.86); }
-.person-portrait { aspect-ratio: 1; margin-bottom: 1.4rem; overflow: hidden; background: #e0dfdb; border-radius: 50%; }
-.person-portrait img { width: 100%; height: 100%; margin: 0; object-fit: cover; border-radius: 0; }
+.person-portrait { width: 100%; aspect-ratio: 1 / 1; margin-bottom: 1.4rem; overflow: hidden; background: #e0dfdb; border-radius: 50%; }
+.person-portrait img { width: 100%; height: 100%; aspect-ratio: auto; margin: 0; object-fit: cover; object-position: center; border-radius: 0; filter: saturate(0.86); }
 .person-nicole .person-portrait img { transform: scale(1.5); transform-origin: 50% 50%; }
 .person h3 { margin-bottom: 0.35rem; font-size: 1.25rem; }
 .person p { margin-bottom: 0; color: var(--muted); font-size: 0.95rem; }
