@@ -1,0 +1,86 @@
+name: Deploy to HostGator
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never let two deploys write to public_html at once.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publish site
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # The site is only published if it passes the same checks CI runs.
+      # A broken build must never reach production.
+      - name: Build _site/
+        run: npm run build
+
+      - name: Check site
+        run: npm run check
+
+      # Until the HostGator secrets are added this skips cleanly instead of
+      # failing every merge. Remove nothing - it activates on its own once
+      # SFTP_HOST is set.
+      - name: Are deploy credentials configured?
+        id: creds
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+        run: |
+          if [ -z "$SFTP_HOST" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::SFTP secrets not set - skipping upload. Site was built and checked only."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install lftp
+        if: steps.creds.outputs.configured == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Upload to HostGator over SFTP
+        if: steps.creds.outputs.configured == 'true'
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          REMOTE_DIR: ${{ secrets.SFTP_REMOTE_DIR }}
+        run: |
+          set -euo pipefail
+          PORT="${SFTP_PORT:-2222}"
+          DIR="${REMOTE_DIR:-public_html}"
+          echo "Uploading _site/ -> ${DIR} on ${SFTP_HOST}:${PORT}"
+          # No --delete on purpose: public_html may hold files this repo does not
+          # own (.htaccess, cgi-bin, .well-known). Stale files are harmless;
+          # a mis-set REMOTE_DIR plus --delete would not be.
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 3;
+            set net:timeout 20;
+            open -u '${SFTP_USER}','${SFTP_PASSWORD}' sftp://${SFTP_HOST}:${PORT};
+            mirror --reverse --verbose --parallel=4 _site/ '${DIR}';
+          "
+
+      - name: Verify the live site
+        if: steps.creds.outputs.configured == 'true'
+        run: |
+          set -euo pipefail
+          sleep 5
+          code=$(curl -sS -o /tmp/live.html -w '%{http_code}' https://masteko.ca/ --max-time 30)
+          echo "https://masteko.ca/ -> $code"
+          [ "$code" = "200" ] || { echo "::error::Live site returned $code"; exit 1; }
+          grep -q 'masteko-logo.png' /tmp/live.html \
+            || { echo "::error::Live page is missing the logo - deploy may be incomplete"; exit 1; }
+          echo "Live site verified."
