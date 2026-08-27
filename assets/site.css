@@ -32,8 +32,8 @@ h3 { line-height: 1.15; }
 :focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
 
 .site-header { position: sticky; top: 0; z-index: 100; min-height: var(--header-height); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; padding: 0 var(--gutter); background: rgba(243, 241, 236, 0.97); border-bottom: 1px solid var(--soft-line); }
-.wordmark { display: inline-flex; align-items: center; font-family: var(--display); font-size: 1.04rem; font-weight: 600; letter-spacing: 0.12em; }
-.wordmark i { width: 2px; height: 1.55rem; margin: 0 0.15rem; background: var(--lime); transform: rotate(12deg); }
+.wordmark { display: inline-flex; align-items: center; }
+.wordmark img { height: 2.05rem; width: auto; }
 .site-nav { justify-self: center; display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.1rem); font-family: var(--display); font-size: 0.88rem; font-weight: 500; }
 .site-nav a, .portal-link { border-bottom: 1px solid transparent; transition: border-color 140ms ease; }
 .site-nav a:hover, .portal-link:hover { border-color: currentColor; }
@@ -130,7 +130,7 @@ h3 { line-height: 1.15; }
 .person { border-top: 1px solid var(--line); padding-top: 1.25rem; }
 .person-portrait { width: 100%; aspect-ratio: 1 / 1; margin-bottom: 1.4rem; overflow: hidden; background: #e0dfdb; border-radius: 50%; }
 .person-portrait img { width: 100%; height: 100%; aspect-ratio: auto; margin: 0; object-fit: cover; object-position: center; border-radius: 0; filter: saturate(0.86); }
-.person-nicole .person-portrait img { transform: scale(1.5); transform-origin: 50% 50%; }
+.person-nicole .person-portrait img { transform: scale(1.5); transform-origin: 57.5% 22%; }
 .person h3 { margin-bottom: 0.35rem; font-size: 1.25rem; }
 .person p { margin-bottom: 0; color: var(--muted); font-size: 0.95rem; }
 
@@ -151,7 +151,8 @@ h3 { line-height: 1.15; }
 .contact address { color: #aebdb7; font-style: normal; }
 
 .site-footer { min-height: 18rem; display: grid; grid-template-columns: 0.8fr 1fr 1fr; gap: 3rem; align-items: start; padding: 3.5rem var(--gutter); background: var(--paper); }
-.footer-wordmark { font-family: var(--display); font-size: 1.7rem; font-weight: 600; letter-spacing: 0.12em; }
+.footer-wordmark { display: inline-flex; align-items: center; }
+.footer-wordmark img { height: 2.9rem; width: auto; }
 .site-footer nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; font-family: var(--display); font-size: 0.9rem; }
 .site-footer > div { display: flex; flex-direction: column; gap: 0.6rem; color: var(--muted); font-size: 0.88rem; }
 
@@ -196,6 +197,8 @@ h3 { line-height: 1.15; }
 @media (max-width: 620px) {
   body { font-size: 1rem; }
   .language-button { padding-right: 0; }
+  .wordmark img { height: 1.75rem; }
+  .footer-wordmark img { height: 2.3rem; }
   .hero h1 { font-size: clamp(2.6rem, 12vw, 4.1rem); overflow-wrap: anywhere; }
   .hero-links { align-items: flex-start; flex-direction: column; }
   .hero-image figcaption { flex-direction: column; gap: 0.3rem; }
