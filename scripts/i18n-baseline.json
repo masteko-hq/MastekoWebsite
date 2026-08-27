@@ -1,0 +1,34 @@
+{
+  "_comment": "intentional = identical in French by nature (names, numbers, brands, symbols). knownGaps = genuine untranslated copy; reported as warnings each run so they are not forgotten. Neither fails CI - a NEW untranslated string does.",
+  "intentional": [
+    "FR",
+    "01",
+    "02",
+    "03",
+    "04",
+    "$125M",
+    "30+",
+    "1",
+    "EN / FR",
+    "→",
+    "Campus Habitations",
+    "QuickBooks Online",
+    "MastekoDWH",
+    "01 / SOURCE",
+    "Marc Koran",
+    "Natali Slutsker",
+    "Steve Lombardi",
+    "Peter Taylor",
+    "Thiha Nyi Nyi",
+    "Nicole Koran",
+    "natali@masteko.ca ↗",
+    "438-951-1173",
+    "Montréal, Québec, Canada",
+    "9408-4811 Québec Inc."
+  ],
+  "knownGaps": [
+    "Skip to content",
+    "02 / CONSOLIDATE",
+    "03 / DECIDE"
+  ]
+}
